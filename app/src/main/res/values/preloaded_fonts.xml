@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/aclonica</item>
+        <item>@font/alfa_slab_one</item>
+        <item>@font/alike_angular</item>
+        <item>@font/average</item>
+        <item>@font/roboto_serif_black</item>
+        <item>@font/roboto_serif_extrabold</item>
+        <item>@font/roboto_slab_bold</item>
+    </array>
+</resources>
