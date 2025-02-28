@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OflineEduApp"
         tools:targetApi="31">
-
+        <activity
+            android:name=".TeacherCon_Activity"
+            android:exported="false" />
         <activity
             android:name=".homeActivity"
             android:exported="true">
@@ -43,7 +45,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".content2Activity"
             android:exported="true">
@@ -51,7 +52,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".scienceActivity"
             android:exported="true">
@@ -59,7 +59,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MathsActivity"
             android:exported="true">
@@ -67,7 +66,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".technoActivity"
             android:exported="true">
