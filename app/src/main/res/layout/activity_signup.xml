@@ -32,23 +32,22 @@
 
     <EditText
         android:id="@+id/editTextTextR_Email"
-        android:layout_width="292dp"
-        android:layout_height="54dp"
+        android:layout_width="299dp"
+        android:layout_height="60dp"
         android:ems="10"
         android:hint="Enter your email"
         android:inputType="textEmailAddress"
         android:textColor="#090909"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSignUp"
-        app:layout_constraintVertical_bias="0.087" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner"
+        app:layout_constraintVertical_bias="0.055" />
 
     <EditText
         android:id="@+id/editTextText2R_Username"
-        android:layout_width="293dp"
-        android:layout_height="52dp"
+        android:layout_width="300dp"
+        android:layout_height="55dp"
         android:ems="10"
         android:hint="Create a username"
         android:inputType="text"
@@ -57,7 +56,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextR_Email"
-        app:layout_constraintVertical_bias="0.123" />
+        app:layout_constraintVertical_bias="0.066" />
 
     <EditText
         android:id="@+id/editTextTextPasswordR_Password"
@@ -71,7 +70,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextText2R_Username"
-        app:layout_constraintVertical_bias="0.168" />
+        app:layout_constraintVertical_bias="0.086" />
 
     <Button
         android:id="@+id/buttonSignUp2"
@@ -88,5 +87,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPasswordR_Password"
-        app:layout_constraintVertical_bias="0.459" />
+        app:layout_constraintVertical_bias="0.515" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="299dp"
+        android:layout_height="61dp"
+        android:entries="@array/dropdown_items"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSignUp"
+        app:layout_constraintVertical_bias="0.073" />
 </androidx.constraintlayout.widget.ConstraintLayout>
