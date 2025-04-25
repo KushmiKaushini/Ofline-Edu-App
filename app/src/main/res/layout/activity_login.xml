@@ -24,8 +24,9 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.407" />
 
+    <!-- Username or Email EditText -->
     <EditText
-        android:id="@+id/editTextText3Username"
+        android:id="@+id/edtUsernameEmail"
         android:layout_width="264dp"
         android:layout_height="49dp"
         android:layout_marginBottom="224dp"
@@ -41,11 +42,12 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner2"
-        app:layout_constraintVertical_bias="0.233"
+        app:layout_constraintVertical_bias="0.633"
         tools:ignore="UnknownId" />
 
+    <!-- Password EditText -->
     <EditText
-        android:id="@+id/editTextTextPassword2Password"
+        android:id="@+id/edtPassword"
         android:layout_width="262dp"
         android:layout_height="46dp"
         android:ems="10"
@@ -59,12 +61,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText3Username"
+        app:layout_constraintTop_toBottomOf="@+id/edtUsernameEmail"
         app:layout_constraintVertical_bias="0.106"
         tools:ignore="TouchTargetSizeCheck" />
 
+    <!-- Login Button -->
     <Button
-        android:id="@+id/button2Login2"
+        android:id="@+id/btnLogin"
         android:layout_width="180dp"
         android:layout_height="59dp"
         android:backgroundTint="#224BB4"
@@ -78,9 +81,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword2Password"
+        app:layout_constraintTop_toBottomOf="@+id/edtPassword"
         app:layout_constraintVertical_bias="0.269" />
 
+    <!-- Spinner (for role selection or any other option) -->
     <Spinner
         android:id="@+id/spinner2"
         android:layout_width="265dp"
@@ -97,6 +101,5 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2Login"
         app:layout_constraintVertical_bias="0.098"
         tools:ignore="MissingConstraints" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

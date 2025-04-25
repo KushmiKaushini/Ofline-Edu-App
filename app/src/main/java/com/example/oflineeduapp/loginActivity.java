@@ -2,7 +2,6 @@ package com.example.oflineeduapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -15,42 +14,66 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class loginActivity extends AppCompatActivity {
 
-    EditText userId, Password;
-    Button login;
+    EditText edtUsernameEmail, edtPassword;
+    Button btnLogin;
+    Database db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login); // Make sure this XML exists and has correct IDs
+
+        // Apply system bar insets
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        userId = findViewById(R.id.editTextText3Username);
-        Password = findViewById(R.id.editTextTextPassword2Password);
-        login = findViewById(R.id.button2Login2);
-        Database db = new Database(getApplicationContext(),"oflineeduapp",null,1);
+        // Initialize views
+        edtUsernameEmail = findViewById(R.id.edtUsernameEmail);  // Ensure these IDs exist in activity_login.xml
+        edtPassword = findViewById(R.id.edtPassword);
+        btnLogin = findViewById(R.id.btnLogin);
 
-    login.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            String username = userId.getText().toString().trim();
-            String password = Password.getText().toString().trim();
+        // Initialize database
+        db = new Database(getApplicationContext(), "oflineeduapp", null, 1);
 
-            if (userId.length()==0 || Password.length()==0){
-                Toast.makeText(getApplicationContext(), "Ivalid Usernamme or Password", Toast.LENGTH_SHORT).show();
+        // Button click listener using lambda expression
+        btnLogin.setOnClickListener(v -> {
+            String input = edtUsernameEmail.getText().toString().trim();
+            String password = edtPassword.getText().toString().trim();
 
-            }else{
-                    Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
-                }
-
-            Intent intent = new Intent(loginActivity.this, content1Activity.class);
-            startActivity(intent);
-
+            if (input.isEmpty() || password.isEmpty()) {
+                Toast.makeText(getApplicationContext(), "Please enter username/email and password", Toast.LENGTH_SHORT).show();
+                return;
             }
-    });
+
+            int result = db.login(input, password);
+            if (result == 1) {
+                String role = db.getUserRole(input);
+                String name = db.getUserName(input);
+
+                Toast.makeText(getApplicationContext(), "Login successful as " + role, Toast.LENGTH_SHORT).show();
+
+                Intent intent = createIntentForRole(role, name);  // Extracted intent creation method
+                startActivity(intent);
+                finish();
+            } else {
+                Toast.makeText(getApplicationContext(), "Incorrect credentials", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    // Extracted method for creating an intent based on user role
+    private Intent createIntentForRole(String role, String name) {
+        Intent intent;
+        if (role.equalsIgnoreCase("Student")) {
+            intent = new Intent(loginActivity.this, studentConActivity.class);
+        } else {
+            intent = new Intent(loginActivity.this, teacherConActivity.class);
+        }
+        intent.putExtra("name", name);
+        return intent;
     }
 }

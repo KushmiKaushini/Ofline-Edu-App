@@ -1,9 +1,7 @@
 <resources>
-    <string name="app_name">Ofline Edu App</string>
-
+    <!-- Define the items for the spinner (dropdown menu) -->
     <string-array name="dropdown_items">
-        <item>Select Your Role</item>
-        <item>Teacher</item>
         <item>Student</item>
+        <item>Teacher</item>
     </string-array>
 </resources>
