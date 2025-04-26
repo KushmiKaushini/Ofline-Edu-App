@@ -2,123 +2,123 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/signup_login"
-    tools:context=".signupActivity">
+    android:background="@drawable/content"
+    android:padding="16dp">
 
-    <!-- Email EditText (updated ID to match Java) -->
+
+    <!-- Title -->
+
+    <!-- Role Spinner -->
     <TextView
         android:id="@+id/textViewSignUp"
-        android:layout_width="217dp"
-        android:layout_height="52dp"
-        android:fontFamily="serif"
-        android:paddingStart="5dp"
-        android:paddingTop="5dp"
-        android:paddingEnd="0dp"
-        android:paddingBottom="0dp"
-        android:text="SignUp"
-        android:textAlignment="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="196dp"
+        android:text="Sign Up"
         android:textColor="#224BB4"
-        android:textSize="34sp"
+        android:textSize="28sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.387" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Username EditText (updated ID to match Java) -->
+    <Spinner
+        android:id="@+id/spinnerRole"
+        android:layout_width="378dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="24dp"
+        android:background="@android:drawable/editbox_background"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSignUp" />
+
+    <!-- Email Input -->
     <EditText
         android:id="@+id/edtEmail"
-        android:layout_width="299dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="15dp"
-        android:ems="10"
-        android:hint="Enter your email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@android:drawable/editbox_background"
+        android:hint="Email"
         android:inputType="textEmailAddress"
-        android:textColor="#090909"
-        app:layout_constraintBottom_toTopOf="@+id/edtUsername"
+        android:padding="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerRole" />
 
+    <!-- Username Input -->
     <EditText
         android:id="@+id/edtUsername"
-        android:layout_width="300dp"
-        android:layout_height="55dp"
-        android:layout_marginBottom="16dp"
-        android:ems="10"
-        android:hint="Create a username"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@android:drawable/editbox_background"
+        android:hint="Username"
         android:inputType="text"
-        android:textColor="#090909"
-        app:layout_constraintBottom_toTopOf="@+id/edtPhone"
+        android:padding="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtEmail"
-        app:layout_constraintVertical_bias="0.066" />
+        app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
 
-    <!-- Password EditText (updated ID to match Java) -->
-
-    <!-- SignUp Button (updated ID to match Java) -->
-
-    <!-- Role Spinner (for role selection) -->
+    <!-- Phone Input -->
     <EditText
-        android:id="@+id/edtPassword"
-        android:layout_width="299dp"
-        android:layout_height="54dp"
-        android:ems="10"
-        android:hint="Enter a password"
-        android:inputType="textPassword"
-        android:textColor="#090909"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/edtPhone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@android:drawable/editbox_background"
+        android:hint="Phone"
+        android:inputType="phone"
+        android:padding="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtUsername" />
 
+    <!-- Password Input -->
+    <EditText
+        android:id="@+id/edtPassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@android:drawable/editbox_background"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtPhone" />
+
+    <!-- Confirm Password Input -->
+    <EditText
+        android:id="@+id/edtConfirmPassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@android:drawable/editbox_background"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtPassword" />
+
+    <!-- Sign Up Button -->
     <Button
         android:id="@+id/btnSignup"
-        android:layout_width="159dp"
-        android:layout_height="60dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:backgroundTint="#224BB4"
-        android:fontFamily="sans-serif-black"
-        android:text="SignUp"
-        android:textAlignment="center"
-        android:textColor="#F2FFFFFF"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:padding="16dp"
+        android:text="Sign Up"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtPassword"
-        app:layout_constraintVertical_bias="0.831" />
+        app:layout_constraintTop_toBottomOf="@+id/edtConfirmPassword" />
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="299dp"
-        android:layout_height="61dp"
-        android:entries="@array/dropdown_items"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSignUp"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <EditText
-        android:id="@+id/edtPhone"
-        android:layout_width="299dp"
-        android:layout_height="54dp"
-        android:layout_marginBottom="16dp"
-        android:ems="10"
-        android:hint="Enter Phone No"
-        android:inputType="phone"
-        app:layout_constraintBottom_toTopOf="@+id/edtPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtUsername"
-        app:layout_constraintVertical_bias="0.113" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 <resources>
     <!-- Define the items for the spinner (dropdown menu) -->
-    <string-array name="dropdown_items">
+    <string-array name="roles_array">
+        <item>Select Role</item>
         <item>Student</item>
         <item>Teacher</item>
     </string-array>

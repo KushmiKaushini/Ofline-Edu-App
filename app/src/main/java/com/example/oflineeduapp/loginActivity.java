@@ -3,77 +3,112 @@ package com.example.oflineeduapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class loginActivity extends AppCompatActivity {
 
-    EditText edtUsernameEmail, edtPassword;
-    Button btnLogin;
-    Database db;
+    private EditText edtUsernameEmail, edtPassword;
+    private Button btnLogin;
+    private CheckBox cbRememberMe;
+    private Database db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_login); // Make sure this XML exists and has correct IDs
-
-        // Apply system bar insets
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        setContentView(R.layout.activity_login);
 
         // Initialize views
-        edtUsernameEmail = findViewById(R.id.edtUsernameEmail);  // Ensure these IDs exist in activity_login.xml
+        edtUsernameEmail = findViewById(R.id.edtUsernameEmail);
         edtPassword = findViewById(R.id.edtPassword);
         btnLogin = findViewById(R.id.btnLogin);
+        cbRememberMe = findViewById(R.id.cbRememberMe);
 
         // Initialize database
-        db = new Database(getApplicationContext(), "oflineeduapp", null, 1);
+        db = new Database(this);
 
-        // Button click listener using lambda expression
-        btnLogin.setOnClickListener(v -> {
-            String input = edtUsernameEmail.getText().toString().trim();
-            String password = edtPassword.getText().toString().trim();
+        // Login button click listener
+        btnLogin.setOnClickListener(v -> attemptLogin());
 
-            if (input.isEmpty() || password.isEmpty()) {
-                Toast.makeText(getApplicationContext(), "Please enter username/email and password", Toast.LENGTH_SHORT).show();
-                return;
-            }
+        // You might want to add click listeners for these as well
+        findViewById(R.id.txtForgotPassword).setOnClickListener(v -> {
+            // Handle forgot password
+        });
 
-            int result = db.login(input, password);
-            if (result == 1) {
-                String role = db.getUserRole(input);
-                String name = db.getUserName(input);
-
-                Toast.makeText(getApplicationContext(), "Login successful as " + role, Toast.LENGTH_SHORT).show();
-
-                Intent intent = createIntentForRole(role, name);  // Extracted intent creation method
-                startActivity(intent);
-                finish();
-            } else {
-                Toast.makeText(getApplicationContext(), "Incorrect credentials", Toast.LENGTH_SHORT).show();
-            }
+        findViewById(R.id.txtSignUp).setOnClickListener(v -> {
+            // Handle sign up
         });
     }
 
-    // Extracted method for creating an intent based on user role
-    private Intent createIntentForRole(String role, String name) {
-        Intent intent;
-        if (role.equalsIgnoreCase("Student")) {
-            intent = new Intent(loginActivity.this, studentConActivity.class);
-        } else {
-            intent = new Intent(loginActivity.this, teacherConActivity.class);
+    private void attemptLogin() {
+        String input = edtUsernameEmail.getText().toString().trim();
+        String password = edtPassword.getText().toString().trim();
+
+        if (input.isEmpty()) {
+            edtUsernameEmail.setError("Please enter username or email");
+            edtUsernameEmail.requestFocus();
+            return;
         }
-        intent.putExtra("name", name);
-        return intent;
+
+        if (password.isEmpty()) {
+            edtPassword.setError("Please enter password");
+            edtPassword.requestFocus();
+            return;
+        }
+
+        // Show loading state
+        btnLogin.setEnabled(false);
+
+        // Perform login in background thread
+        new Thread(() -> {
+            User user = db.login(input, password);
+
+            runOnUiThread(() -> {
+                btnLogin.setEnabled(true);
+
+                if (user != null) {
+                    handleSuccessfulLogin(user);
+                } else {
+                    handleFailedLogin();
+                }
+            });
+        }).start();
+    }
+
+    private void handleSuccessfulLogin(User user) {
+        // Save login state if Remember Me is checked
+        if (cbRememberMe.isChecked()) {
+            // You should implement secure storage for credentials
+            // For example using SharedPreferences or EncryptedSharedPreferences
+        }
+
+        Toast.makeText(this, "Welcome, " + user.getUsername() + "!", Toast.LENGTH_SHORT).show();
+
+        Intent intent;
+        if (user.getRole().equalsIgnoreCase("Student")) {
+            intent = new Intent(this, studentConActivity.class);
+        } else {
+            intent = new Intent(this, teacherConActivity.class);
+        }
+
+        intent.putExtra("user", user);
+        startActivity(intent);
+        finish();
+    }
+
+    private void handleFailedLogin() {
+        Toast.makeText(this, "Invalid credentials. Please try again.", Toast.LENGTH_SHORT).show();
+        edtPassword.setText("");
+        edtPassword.requestFocus();
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (db != null) {
+            db.close();
+        }
+        super.onDestroy();
     }
 }

@@ -5,101 +5,119 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/signup_login"
+    android:background="@drawable/content"
+    android:paddingHorizontal="32dp"
     tools:context=".loginActivity">
 
+    <!-- Login Title -->
     <TextView
         android:id="@+id/textView2Login"
-        android:layout_width="181dp"
-        android:layout_height="75dp"
-        android:fontFamily="serif"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="176dp"
+        android:fontFamily="sans-serif-medium"
         android:text="Login"
-        android:textAlignment="center"
         android:textColor="#224BB4"
-        android:textSize="48sp"
+        android:textSize="36sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.407" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Username or Email EditText -->
-    <EditText
-        android:id="@+id/edtUsernameEmail"
-        android:layout_width="264dp"
-        android:layout_height="49dp"
-        android:layout_marginBottom="224dp"
-        android:ems="10"
-        android:hint="Username or Email"
-        android:inputType="text"
-        android:paddingStart="10dp"
-        android:paddingTop="5dp"
-        android:paddingEnd="10dp"
-        android:paddingBottom="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <!-- Email/Username Input -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/usernameInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:hint="Email or Username"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner2"
-        app:layout_constraintVertical_bias="0.633"
-        tools:ignore="UnknownId" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2Login">
 
-    <!-- Password EditText -->
-    <EditText
-        android:id="@+id/edtPassword"
-        android:layout_width="262dp"
-        android:layout_height="46dp"
-        android:ems="10"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtUsernameEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress|textNoSuggestions"
+            android:textColor="#090909" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Password Input -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:hint="Password"
-        android:inputType="textPassword"
-        android:paddingStart="10dp"
-        android:paddingTop="5dp"
-        android:paddingEnd="10dp"
-        android:paddingBottom="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:endIconMode="password_toggle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtUsernameEmail"
-        app:layout_constraintVertical_bias="0.106"
-        tools:ignore="TouchTargetSizeCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/usernameInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:textColor="#090909" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Remember Me Checkbox -->
+    <CheckBox
+        android:id="@+id/cbRememberMe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Remember me"
+        android:textColor="#224BB4"
+        app:layout_constraintStart_toStartOf="@+id/passwordInputLayout"
+        app:layout_constraintTop_toBottomOf="@+id/passwordInputLayout" />
 
     <!-- Login Button -->
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="180dp"
-        android:layout_height="59dp"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="#224BB4"
-        android:fontFamily="sans-serif-black"
         android:text="Login"
-        android:textAlignment="center"
-        android:textColor="#F2FFFFFF"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:cornerRadius="28dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtPassword"
-        app:layout_constraintVertical_bias="0.269" />
+        app:layout_constraintTop_toBottomOf="@+id/cbRememberMe" />
 
-    <!-- Spinner (for role selection or any other option) -->
-    <Spinner
-        android:id="@+id/spinner2"
-        android:layout_width="265dp"
-        android:layout_height="53dp"
-        android:backgroundTint="#0B0B0B"
-        android:dropDownWidth="match_parent"
-        android:dropDownSelector="@android:drawable/btn_dropdown"
-        android:entries="@array/dropdown_items"
-        android:outlineProvider="background"
+    <!-- Forgot Password Link -->
+    <TextView
+        android:id="@+id/txtForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Forgot Password?"
+        android:textColor="#224BB4"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+
+    <!-- Sign Up Link -->
+    <TextView
+        android:id="@+id/txtSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="32dp"
+        android:text="Don't have an account? Sign Up"
+        android:textColor="#224BB4"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2Login"
-        app:layout_constraintVertical_bias="0.098"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toBottomOf="@+id/txtForgotPassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

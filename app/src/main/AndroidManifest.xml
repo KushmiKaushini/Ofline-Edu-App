@@ -15,7 +15,7 @@
 
         <!-- Main launcher activity -->
         <activity
-            android:name=".loginActivity"
+            android:name=".homeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,11 +24,11 @@
         </activity>
 
         <activity
-            android:name=".signupActivity"
+            android:name=".loginActivity"
             android:exported="false" />
 
         <activity
-            android:name=".homeActivity"
+            android:name=".signupActivity"
             android:exported="false" />
 
         <activity
@@ -41,10 +41,6 @@
 
         <activity
             android:name=".studentProfileActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".profileActivity2"
             android:exported="false" />
 
         <activity
